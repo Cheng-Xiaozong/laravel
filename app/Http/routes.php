@@ -98,3 +98,23 @@ Route::get('member/infoview','MemberController@infoview');
 
 //使用模型
 Route::get('member/model','MemberController@getMember');
+
+//使用原始sql语句操作数据库
+Route::get('student/test','StudentController@test');
+
+//使用构造器操作数据库
+Route::get('student/test1','StudentController@test1');
+Route::get('student/test2','StudentController@test2');
+Route::get('student/test3','StudentController@test3');
+Route::get('student/test4','StudentController@test4');
+
+//使用orm操作数据库
+Route::get('student/orm1','StudentController@orm1');
+Route::get('student/orm2','StudentController@orm2');
+Route::get('student/orm3','StudentController@orm3');
+
+
+
+
+
+
