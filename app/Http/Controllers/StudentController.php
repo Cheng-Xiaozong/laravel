@@ -336,5 +336,37 @@ class StudentController extends Controller
         //$num = Student::where('id','>=',9)->delete();
     }
 
+    //lavavel中使用blade视图模板
+    public function blade()
+    {
+        $name = '王小二';
+        $arr = ['王小二','王二小'];
+        return view('student/blade',['name'=>$name,'arr'=>$arr]);
+    }
+
+    //lavavel中使用blade视图模板-流程控制
+    public function ifelse()
+    {
+
+        $name = '王小二';
+        $arr = ['王小二','王二小'];
+        $students=Student::get();
+        $nullarr=[];
+        return view('student/ifelse',[
+            'name'=>$name,
+            'arr'=>$arr,
+            'students'=>$students,
+            'nullarr'=>$nullarr
+        ]);
+    }
+
+    //URL中路由的使用
+    public function UrlTest()
+    {
+        return view('student/urltest');
+
+    }
+
+
 
 }

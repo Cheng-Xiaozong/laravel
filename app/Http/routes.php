@@ -119,6 +119,12 @@ Route::get('student/orm7','StudentController@orm7');
 Route::get('student/orm8','StudentController@orm8');
 Route::get('student/orm9','StudentController@orm9');
 
+//lavavel中使用blade视图模板
+Route::get('student/blade','StudentController@blade');
+Route::get('student/ifelse','StudentController@ifelse');
+Route::get('student/urltest',['as'=>'urltest','uses'=>'StudentController@UrlTest']);
+
+
 
 
 

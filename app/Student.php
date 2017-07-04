@@ -28,8 +28,8 @@ class Student extends Model
     }
 
     //设置输出的时间格式-为原始时间戳
-    protected function asDateTime($value)
+   /* protected function asDateTime($value)
     {
         return $value;
-    }
+    }*/
 }
