@@ -222,4 +222,119 @@ class StudentController extends Controller
         var_dump($num,$max,$min,$avg,$sum);
     }
 
+    //在ORM中新增数据->save();
+    public function orm4()
+    {
+        //新增数据-返回布尔值->save();
+        //$student = new Student();
+        //$student->name = 'books';
+        //$student->age = '118';
+        //$bool=$student->save();
+
+        //数据表中时间会自动更新
+        //如果不再模型中设定当前的时间格式-默认将时间保存成年份-2017
+        //created_at ->2017
+        //updated_at ->2017
+
+        //如果不想维护表中的时间字段,在模型中将时间戳设置为false即可
+        //public $timestamps = false;
+        //created_at ->null
+        //updated_at ->null
+
+        //如果需要设置时间的格式为时间戳-在模型中添加方法getDateFormat();
+        //created_at ->1499133120
+        //updated_at ->1499133120
+
+        //输出时自动格式化时间
+        //$student = Student::find(1);
+        //$time = $student->created_at;
+        // 2017-07-04 01:52:00
+
+        //如果想直接输出时间戳-在模型中添加一个方法asDateTime();
+        //$student = Student::find(9);
+        //$time = $student->created_at;  //1499133120
+        //echo date('Y-m-d H:i:s',$time); //2017-07-04 01:52:00
+
+    }
+
+    //在ORM中新增数据->create();
+    public function orm5()
+    {
+        //使用create新增数据必须在模型中设置批量赋值
+        //指定允许批量赋值的字段
+        //protected $fillable = ['name','age'];
+        //指定不允许批量赋值的字段
+        //protected $guarded = [];
+
+        //使用create()方法创建数据，返回值是student对象
+        //$data['name']='xiaomi';
+        //$data['age']=18;
+        //$sudent = Student::create($data);
+    }
+
+    //在ORM中以属性查找，没有则新增数据-返回实例
+    public function orm6()
+    {
+        //以下会查找一个数据，因为数据库中有这条记录,返回复合条件的第一条数据的实例
+        //$data['name']='xiaomi';
+        //$data['age']=18;
+        //$student = Student::firstOrCreate($data);
+
+        //以下会创建一个数据，因为数据库中没有有这条记录，返回创建数据的实列
+        //$data['name']='xiaomia';
+        //$data['age']=188;
+        //$student = Student::firstOrCreate($data);
+    }
+
+    //在ORM中以属性查找，没有则返回实例-返回实例（不保存数据，需要手动保存）
+    public function orm7()
+    {
+        //以下会查找一个数据，因为数据库中有这条记录,返回复合条件的第一条数据的实例
+        //$data['name']='xiaomi';
+        //$data['age']=18;
+        //$student = Student::firstOrNew($data);
+
+
+        //以下会返回一个以参数为属性的实例对象，不会保存到数据库
+        //$data['name']='dd';
+        //$data['age']=2838;
+        //$student = Student::firstOrNew($data);
+
+        //如果需要保存到数据库，调用save()方法，返回bool值
+        //$bool = $student->save();
+        //dd($bool);
+    }
+
+    //在ORM中更新数据
+    public function orm8()
+    {
+        //通过模型更新数据-返回布尔值
+        //$student = Student::find(2);
+        //$student->name = 'xingming2';
+        //$bool = $student->save();
+        //dd($bool);
+
+        //结合查询构造器批量更新-返回影响的行数
+        //$data['name']='kitty';
+        //$data['age']=18;
+        //$num = Student::where('id','>=',10)->update($data);
+    }
+
+    //在ORM中删除数据
+    public function orm9()
+    {
+        //通过模型删除数据-返回布尔值
+        //$student = Student::find(16);
+        //$bool = $student->delete();
+
+        //通过主键删除，返回影响行数
+        //$num = Student::destroy(15);
+        //$num = Student::destroy(14,13);
+        //$num = Student::destroy([10,11,12]);
+
+        //通过查询构造器删除，返回影响行数
+        //$num = Student::where('id','>=',9)->delete();
+    }
+
+
 }

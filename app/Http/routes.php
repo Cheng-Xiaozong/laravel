@@ -112,6 +112,12 @@ Route::get('student/test4','StudentController@test4');
 Route::get('student/orm1','StudentController@orm1');
 Route::get('student/orm2','StudentController@orm2');
 Route::get('student/orm3','StudentController@orm3');
+Route::get('student/orm4','StudentController@orm4');
+Route::get('student/orm5','StudentController@orm5');
+Route::get('student/orm6','StudentController@orm6');
+Route::get('student/orm7','StudentController@orm7');
+Route::get('student/orm8','StudentController@orm8');
+Route::get('student/orm9','StudentController@orm9');
 
 
 
