@@ -124,6 +124,30 @@ Route::get('student/blade','StudentController@blade');
 Route::get('student/ifelse','StudentController@ifelse');
 Route::get('student/urltest',['as'=>'urltest','uses'=>'StudentController@UrlTest']);
 
+//laravel中的请求
+Route::get('student/resquest','StudentController@resquest');
+
+//laravel 中的session,使用中间件开启session
+Route::group(['middleware'=>['web']],function(){
+    Route::get('student/session1','StudentController@session1');
+    Route::get('student/session2','StudentController@session2');
+});
+
+//laravel中的响应
+Route::get('student/response','StudentController@response');
+Route::get('student/response1',['as'=>'response1','uses'=>'StudentController@response1']);
+
+//laravel 中间件Middleware
+Route::get('student/activity0','StudentController@activity0'); //活动宣传页面
+Route::group(['middleware'=>['activity']],function(){
+    Route::get('student/activity1','StudentController@activity1');  //活动进行中页面
+    Route::get('student/activity2','StudentController@activity2');   //活动结束页面
+});
+
+
+
+
+
 
 
 

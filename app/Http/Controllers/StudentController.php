@@ -7,7 +7,9 @@
  */
 namespace App\Http\Controllers;
 use App\Student;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
 {
@@ -367,6 +369,140 @@ class StudentController extends Controller
 
     }
 
+    //laravle 中的请求-取值
+    public function resquest(Request $request)
+    {
+        //取get参数值
+        $name=$request->input('name');
 
+        //默认值-没有参数值，就使用默认值
+        $sex=$request->input('sex','默认值');
+
+        //判断是否有某个参数
+        if($request->has('name'))
+        {
+            echo $request->input('name');
+        }else{
+            echo '没有name这个参数';
+        }
+
+        //取出所有参数
+        $params = $request->all();
+
+        //请求方法
+       $method=$request->method(); //GET
+
+        //判断请求类型
+        if($request->isMethod('GET')){
+            echo '我是GET方法';
+        }else{
+            echo '我不是GET方法';
+        }
+
+        //判断是否为ajax请求
+        $bool = $request->ajax();
+
+        //判断请求路由的格式
+        $bool = $request->is('student/*');
+
+        //获取当前的URL
+        $url = $request->url();  //http://192.168.1.156:81/student/resquest
+    }
+
+    //laravel 中的session
+    public function session1(Request $request)
+    {
+        //1. HTTP request类的session()方法
+        $request->session()->put('key1','value1');
+        $request->session()->get('key1');
+
+        //2. session()辅助函数
+        session()->put('key2','value2');
+        session()->get('key2');
+
+        //3. Session facade laravel中的类
+        Session::put('key3','value3');
+        Session::get('key3');
+
+        //不存在取默认值-但是并没有将默认值写入到session,再次获取依旧为空
+        Session::get('key4','默认值');
+
+        //以数组的形式写入session
+        Session::put(['key5'=>'value5']);
+        Session::get('key5');
+
+        //把数据存储到session的数组中
+        Session::push('key6','value6');
+        Session::push('key6','value66');
+        $arr = Session::get('key6');
+
+        //第一次取出数据，第二次就删除数据
+        $session = Session::pull('wocao');
+        //var_dump($session); //第一次是one 第二次被删除，取出的是默认值
+
+        //取出session中所有的值
+        $arr = Session::all();
+
+        //判断session是否存在
+        $bool=Session::has('key2');
+
+        //删除指定的Session
+        Session::forget('key6');
+
+        //删除所有session
+        Session::flush();
+
+        //暂存数据-第一次访问存在,第二次访问就不存在
+        Session::flush('key-flush','val-flush');
+
+    }
+
+    //laravel中的响应 response
+    public function response()
+    {
+        $data=[
+            'errCode'=>0,
+            'errMsg'=>'错误的参数Name',
+            'data'=>'你是傻逼吗？'
+        ];
+
+        //输出json
+        //return response()->json($data);
+
+        //重定向
+        //return redirect('student/blade');
+        //携带参数的快闪数据重定向
+        //return redirect('student/response1')->with('msg','快闪数据-第一次有效，第二次无效');
+        //return redirect()->action('StudentController@response1')->with('msg','快闪数据-第一次有效，第二次无效');
+        //return redirect()->route('response1')->with('msg','快闪数据-第一次有效，第二次无效');
+
+        //重定向到上一个页面
+        //return redirect()->back();
+
+    }
+
+    //重定向，接收快闪数据
+    public function response1()
+    {
+        return Session::get('msg','暂无数据');
+    }
+
+    //活动宣传页面
+    public function activity0()
+    {
+        return '活动快要开始了，敬请期待';
+    }
+
+    //活动进行中页面1
+    public function activity1()
+    {
+        return '活动进行中，欢迎参与！';
+    }
+
+    //活动进行中页面2
+    public function activity2()
+    {
+        return '活动进行中，欢迎参与！';
+    }
 
 }
