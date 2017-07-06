@@ -145,11 +145,13 @@ Route::group(['middleware'=>['activity']],function(){
 });
 
 
-
-
-
-
-
+//laravel 表单之-开发顾客管理系统
+Route::get('client/index',['as'=>'index','uses'=>'ClientController@index']);
+Route::any('client/create',['as'=>'create','uses'=>'ClientController@create']);
+Route::any('client/save',['as'=>'save','uses'=>'ClientController@save']);
+Route::any('client/edit/{id}',['as'=>'edit','uses'=>'ClientController@edit']);
+Route::any('client/detail/{id}',['as'=>'edit','uses'=>'ClientController@detail']);
+Route::any('client/delete/{id}',['as'=>'edit','uses'=>'ClientController@delete']);
 
 
 
