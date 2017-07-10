@@ -505,4 +505,32 @@ class StudentController extends Controller
         return '活动进行中，欢迎参与！';
     }
 
+    //验证
+    public function yz()
+    {
+        return view('student.yz');
+    }
+
+    //保存数据
+    public function sv(Request $request)
+    {
+        $time='2017-05-08';
+        $this->validate($request, [
+            'name' => 'required|ip',
+        ],[
+            'required' => ':attribute 为必填项',
+            'email' => ':attribute 必须是一个邮箱',
+            'array' => ':attribute 必须是一个数组',
+            'date' => ':attribute 必须是一个时间',
+            'ip' => ':attribute 必须是一个ip地址',
+            'after' => ':attribute 必须在'.$time.'之后'
+
+        ], [
+            'name' => '姓名',
+
+        ]);
+
+         return redirect('client/index');
+    }
+
 }

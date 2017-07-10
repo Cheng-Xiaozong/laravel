@@ -151,8 +151,18 @@ Route::any('client/create',['as'=>'create','uses'=>'ClientController@create']);
 Route::any('client/save',['as'=>'save','uses'=>'ClientController@save']);
 Route::any('client/edit/{id}',['as'=>'edit','uses'=>'ClientController@edit']);
 Route::any('client/detail/{id}',['as'=>'edit','uses'=>'ClientController@detail']);
-Route::any('client/delete/{id}',['as'=>'edit','uses'=>'ClientController@delete']);
+Route::any('client/delete/{id}',['as'=>'delete','uses'=>'ClientController@delete']);
+
+//laravel 表单验证
+Route::any('student/yz',['as'=>'yz','uses'=>'StudentController@yz']);
+Route::any('student/sv',['as'=>'sv','uses'=>'StudentController@sv']);
 
 
 
 
+
+
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
